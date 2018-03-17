@@ -1,0 +1,68 @@
+
+<form #f="ngForm" (ngSubmit)="createCourse(f)" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="name">Course Name:</label>
+    <input 
+      required 
+      minlength="3" 
+      maxlength="20" 
+      ngModel 
+      name="name" 
+      #name="ngModel" 
+      id="name" 
+      type="text" 
+      class="form-control"/>
+    <div class="alert alert-danger" *ngIf="name.touched && !name.valid ">
+      <div *ngIf="name.errors.required">
+        Course Name is required.
+      </div>
+      <div *ngIf="name.errors.minlength">
+        Course Name should be min {{name.errors.minlength.requiredLength}} characters.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description">Course Description:</label>
+    <textarea ngModel name="description" id="description" 
+    cols="30" rows="10" 
+    class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Price:</label>
+    <input ngModel name="price" id="price" type="text" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="file">File:</label>
+    <input ngModel name="file" id="file" type="file" class="form-control"/>
+    
+  </div>
+
+ <!-- <div class="form-group">
+    <label for="image">Image:</label>
+    <input ngModel name="image" id="image" type="file" class="form-control"/>
+  </div> -->
+<!--  <div class="form-group">
+      <input type="checkbox" ngModel name="isSubscribed"/>
+      <label>Subscribe to Mailing List</label>
+  </div>
+  <div class="form-group">
+      <label for="contactMethod">Contact Method:</label>
+      <select multiple ngModel name="contactMethod" id="contactMethod" >
+        <option value=""></option>
+        <option *ngFor="let method of contactMethods"
+                [ngValue]="method">{{method.name}}</option>
+        </select>
+    </div> -->
+  
+
+  <!--<div>{{f.value | json }}</div>-->
+  
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form>
+
+
+
+
+
