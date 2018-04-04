@@ -12,14 +12,16 @@
       <ul class="nav navbar-nav">
         <li routerLinkActive="active current"><a routerLink="/">Home</a></li>
         <li routerLinkActive="active current"><a routerLink="/courses">Courses</a></li>
-        <li routerLinkActive="active current"><a routerLink="/addCourses">Add Courses</a></li>
-        <li routerLinkActive="active current"><a routerLink="/upload">Upload Test</a></li>
-        <!--<li routerLinkActive="active current"><a routerLink="#">Stores</a></li>
-        <li routerLinkActive="active current"><a routerLink="#">Contact</a></li>-->
+        <li *ngIf="authService.isLoggedIn() && authService.currentUser.isAdmin" routerLinkActive="active current"><a routerLink="/addCourses">Add Courses</a></li>
+        <li routerLinkActive="active current"><a routerLink="/register">Register</a></li>
+        <li routerLinkActive="active current"><a routerLink="/customers">Members</a>
+        <!--<li routerLinkActive="active current"><a routerLink="#">Contact</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+        <li *ngIf="authService.isLoggedIn()"><a>Welcome {{authService.currentUser.username}}</a></li>
+        <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>
+        <!--<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cart</a></li>-->
       </ul>
     </div>
   </div>
