@@ -34,6 +34,7 @@ export class DataService {
   }
 
   generateAuthorizationHeader():RequestOptions{
+    
     const headers = new Headers();
     let token = localStorage.getItem('Authorization');
     headers.append('Authorization', token);
